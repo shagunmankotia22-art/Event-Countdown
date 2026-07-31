@@ -8,8 +8,6 @@ import AddEvent from './pages/AddEvent.jsx'
 import PastEvents from './pages/PastEvents.jsx'
 import Login from './pages/Login.jsx'
 import NotFound from './pages/NotFound.jsx'
-import CounterDemo from './pages/CounterDemo.jsx'
-import TodoDemo from './pages/TodoDemo.jsx'
 
 export default function App() {
   return (
@@ -39,10 +37,6 @@ export default function App() {
             />
 
             <Route path="/login" element={<Login />} />
-
-            {/* Named CHO mini-project demos */}
-            <Route path="/demos/counter" element={<CounterDemo />} />
-            <Route path="/demos/todo" element={<TodoDemo />} />
 
             {/* Catch-all 404 */}
             <Route path="*" element={<NotFound />} />

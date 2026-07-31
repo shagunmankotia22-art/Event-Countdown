@@ -3,6 +3,7 @@ import HeroCountdown from '../components/HeroCountdown.jsx'
 import EventCard from '../components/EventCard.jsx'
 import StatsCards from '../components/StatsCards.jsx'
 import MilestoneList from '../components/MilestoneList.jsx'
+import CalendarWidget from '../components/CalendarWidget.jsx'
 
 export default function Dashboard() {
   const { upcomingEvents, stats, deleteEvent } = useEvents()
@@ -22,9 +23,12 @@ export default function Dashboard() {
         <StatsCards stats={stats} />
       </div>
 
-      <aside className="glass-card rounded-[2rem] p-6 h-fit">
-        <h3 className="text-lg font-bold mb-4">Upcoming Milestones</h3>
-        <MilestoneList events={upcomingEvents} />
+      <aside className="h-fit">
+        <CalendarWidget />
+        <div className="glass-card rounded-[2rem] p-6">
+          <h3 className="text-lg font-bold mb-4">Upcoming Milestones</h3>
+          <MilestoneList events={upcomingEvents} />
+        </div>
       </aside>
     </div>
   )

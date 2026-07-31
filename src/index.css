@@ -33,6 +33,7 @@
 
 body {
   margin: 0;
+  color-scheme: dark;
 }
 
 a {
@@ -66,4 +67,14 @@ textarea:focus-visible {
 
 input, select, textarea {
   font-family: inherit;
+  color: #dae2fd;
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(218, 226, 253, 0.4);
+}
+
+select option {
+  background: #171f33;
+  color: #dae2fd;
 }
