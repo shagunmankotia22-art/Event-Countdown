@@ -44,7 +44,7 @@ export default function Navbar() {
               <li key={r.id}>
                 <Link
                   to={`/events/${r.id}`}
-                  className="block px-4 py-3 hover:bg-white/5 text-sm"
+                  className="block px-4 py-3 hover:bg-white/5 text-sm text-on-surface"
                   onClick={() => setQuery('')}
                 >
                   {r.title}

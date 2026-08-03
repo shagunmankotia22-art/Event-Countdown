@@ -137,7 +137,7 @@ export default function CalendarWidget() {
                 className="flex items-center gap-3 p-2 rounded-xl hover:bg-white/5"
               >
                 <span className={`w-2 h-2 rounded-full bg-${event.color}`} />
-                <span className="text-sm">{event.title}</span>
+                <span className="text-sm text-on-surface">{event.title}</span>
               </Link>
             ))
           )}
