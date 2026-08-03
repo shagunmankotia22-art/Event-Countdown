@@ -136,8 +136,11 @@ export default function AddEvent() {
           border: 1px solid rgba(255,255,255,0.1);
           border-radius: 0.75rem;
           padding: 0.75rem 1rem;
-          color: inherit;
+          color: #dae2fd;
           outline: none;
+        }
+        .input::placeholder {
+          color: rgba(218, 226, 253, 0.4);
         }
         .input:focus {
           border-color: #c0c1ff;

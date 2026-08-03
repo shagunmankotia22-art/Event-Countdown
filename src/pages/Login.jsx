@@ -29,7 +29,7 @@ export default function Login() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Your name"
-          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-primary"
+          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-primary text-on-surface placeholder:text-on-surface-variant/50"
         />
         <button
           type="submit"
