@@ -36,6 +36,13 @@ body {
   color-scheme: dark;
 }
 
+/* Safety net: Tailwind's CDN preflight can leave headings without an
+   inherited color in some browsers, causing invisible black text on
+   this dark theme. Force headings to inherit unless overridden. */
+h1, h2, h3, h4, h5, h6 {
+  color: inherit;
+}
+
 a {
   text-decoration: none;
   color: inherit;
