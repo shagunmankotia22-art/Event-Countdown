@@ -7,6 +7,14 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.glass-modal {
+  background: rgba(45, 52, 73, 0.85);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
 .monospaced-timer {
   font-family: 'JetBrains Mono', monospace;
   font-variant-numeric: tabular-nums;

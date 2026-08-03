@@ -6,6 +6,9 @@ import Dashboard from './pages/Dashboard.jsx'
 import EventDetail from './pages/EventDetail.jsx'
 import AddEvent from './pages/AddEvent.jsx'
 import PastEvents from './pages/PastEvents.jsx'
+import Categories from './pages/Categories.jsx'
+import Archives from './pages/Archives.jsx'
+import Help from './pages/Help.jsx'
 import Login from './pages/Login.jsx'
 import NotFound from './pages/NotFound.jsx'
 
@@ -25,6 +28,9 @@ export default function App() {
 
             {/* Nested-feeling routes under the same layout */}
             <Route path="/past" element={<PastEvents />} />
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/archives" element={<Archives />} />
+            <Route path="/help" element={<Help />} />
 
             {/* Protected route — requires auth, else redirected to /login */}
             <Route

@@ -12,21 +12,30 @@ export default function MilestoneList({ events }) {
 
   return (
     <div className="space-y-3">
-      {events.map((event) => (
-        <Link
-          key={event.id}
-          to={`/events/${event.id}`}
-          className="flex items-center gap-4 p-4 rounded-2xl hover:bg-white/5 transition-colors"
-        >
-          <div className={`w-2 h-12 bg-${event.color} rounded-full`} />
-          <div className="flex-1">
-            <h4 className="text-sm font-bold text-on-surface">{event.title}</h4>
-            <p className="text-xs text-on-surface-variant">
-              {event.location} · {new Date(event.date).toLocaleDateString()}
-            </p>
-          </div>
-        </Link>
-      ))}
+      {events.map((event) => {
+        const daysLeft = Math.max(
+          0,
+          Math.ceil((new Date(event.date).getTime() - Date.now()) / 86400000)
+        )
+        return (
+          <Link
+            key={event.id}
+            to={`/events/${event.id}`}
+            className="flex items-center gap-4 p-4 rounded-2xl hover:bg-white/5 transition-colors"
+          >
+            <div className={`w-2 h-12 bg-${event.color} rounded-full`} />
+            <div className="flex-1">
+              <h4 className="text-sm font-bold text-on-surface">{event.title}</h4>
+              <p className="text-xs text-on-surface-variant">
+                {event.location} · {new Date(event.date).toLocaleDateString()}
+              </p>
+            </div>
+            <span className={`text-xs font-mono text-${event.color}`}>
+              T-{daysLeft}d
+            </span>
+          </Link>
+        )
+      })}
     </div>
   )
 }

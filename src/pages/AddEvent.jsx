@@ -1,17 +1,13 @@
 import { useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useEvents } from '../context/EventsContext.jsx'
+import { CATEGORY_META } from '../data/seedEvents.js'
 
-const CATEGORY_OPTIONS = [
-  { value: 'Concert', color: 'primary', icon: 'music_note' },
-  { value: 'Travel', color: 'tertiary', icon: 'flight_takeoff' },
-  { value: 'Celebration', color: 'secondary', icon: 'cake' },
-  { value: 'Conference', color: 'primary', icon: 'campaign' }
-]
+const CATEGORY_OPTIONS = Object.keys(CATEGORY_META)
 
 const initialForm = {
   title: '',
-  category: CATEGORY_OPTIONS[0].value,
+  category: CATEGORY_OPTIONS[0],
   location: '',
   date: '',
   notes: ''
@@ -46,7 +42,7 @@ export default function AddEvent() {
     setErrors(validationErrors)
     if (Object.keys(validationErrors).length > 0) return
 
-    const meta = CATEGORY_OPTIONS.find((c) => c.value === form.category)
+    const meta = CATEGORY_META[form.category]
     addEvent({
       title: form.title.trim(),
       category: form.category,
@@ -54,7 +50,8 @@ export default function AddEvent() {
       date: new Date(form.date).toISOString(),
       notes: form.notes.trim(),
       color: meta.color,
-      icon: meta.icon
+      icon: meta.icon,
+      image: meta.image
     })
 
     setForm(initialForm)
@@ -85,7 +82,7 @@ export default function AddEvent() {
             className="input"
           >
             {CATEGORY_OPTIONS.map((c) => (
-              <option key={c.value} value={c.value}>{c.value}</option>
+              <option key={c} value={c}>{c}</option>
             ))}
           </select>
         </Field>

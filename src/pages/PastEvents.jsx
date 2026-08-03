@@ -2,7 +2,7 @@ import { useEvents } from '../context/EventsContext.jsx'
 import EventCard from '../components/EventCard.jsx'
 
 export default function PastEvents() {
-  const { pastEvents, deleteEvent } = useEvents()
+  const { pastEvents, deleteEvent, archiveEvent } = useEvents()
 
   return (
     <div>
@@ -12,7 +12,12 @@ export default function PastEvents() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {pastEvents.map((event) => (
-            <EventCard key={event.id} event={event} onDelete={deleteEvent} />
+            <EventCard
+              key={event.id}
+              event={event}
+              onDelete={deleteEvent}
+              onArchive={archiveEvent}
+            />
           ))}
         </div>
       )}

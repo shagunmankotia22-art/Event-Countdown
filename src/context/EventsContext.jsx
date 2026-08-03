@@ -3,20 +3,33 @@ import { useLocalStorage } from '../hooks/useLocalStorage.js'
 import { seedEvents } from '../data/seedEvents.js'
 
 const EventsContext = createContext(null)
+const STORAGE_KEY = 'event-countdown:events'
 
 export function EventsProvider({ children }) {
-  const [events, setEvents] = useLocalStorage('event-countdown:events', seedEvents)
+  const [events, setEvents] = useLocalStorage(STORAGE_KEY, seedEvents)
 
-  // useCallback: stable function identity passed down to many child components
   const addEvent = useCallback((newEvent) => {
     setEvents((prev) => [
       ...prev,
-      { ...newEvent, id: `evt-${Date.now()}` }
+      {
+        ...newEvent,
+        id: `evt-${Date.now()}`,
+        createdAt: new Date().toISOString(),
+        archived: false
+      }
     ])
   }, [setEvents])
 
   const deleteEvent = useCallback((id) => {
     setEvents((prev) => prev.filter((e) => e.id !== id))
+  }, [setEvents])
+
+  const archiveEvent = useCallback((id) => {
+    setEvents((prev) => prev.map((e) => (e.id === id ? { ...e, archived: true } : e)))
+  }, [setEvents])
+
+  const unarchiveEvent = useCallback((id) => {
+    setEvents((prev) => prev.map((e) => (e.id === id ? { ...e, archived: false } : e)))
   }, [setEvents])
 
   const getEventById = useCallback(
@@ -25,33 +38,74 @@ export function EventsProvider({ children }) {
   )
 
   // useMemo: only recompute derived lists when `events` actually changes
+  const activeEvents = useMemo(() => events.filter((e) => !e.archived), [events])
+
   const upcomingEvents = useMemo(() => {
     const now = Date.now()
-    return events
+    return activeEvents
       .filter((e) => new Date(e.date).getTime() >= now)
       .sort((a, b) => new Date(a.date) - new Date(b.date))
-  }, [events])
+  }, [activeEvents])
 
   const pastEvents = useMemo(() => {
     const now = Date.now()
-    return events
+    return activeEvents
       .filter((e) => new Date(e.date).getTime() < now)
       .sort((a, b) => new Date(b.date) - new Date(a.date))
-  }, [events])
+  }, [activeEvents])
+
+  const archivedEvents = useMemo(
+    () => events.filter((e) => e.archived).sort((a, b) => new Date(b.date) - new Date(a.date)),
+    [events]
+  )
+
+  // Groups active events by category, with counts — powers the Categories page
+  const categoryCounts = useMemo(() => {
+    const map = {}
+    activeEvents.forEach((e) => {
+      map[e.category] = (map[e.category] || 0) + 1
+    })
+    return map
+  }, [activeEvents])
 
   const stats = useMemo(() => ({
-    total: events.length,
+    total: activeEvents.length,
     upcoming: upcomingEvents.length,
-    completed: pastEvents.length
-  }), [events, upcomingEvents, pastEvents])
+    completed: pastEvents.length,
+    archived: archivedEvents.length
+  }), [activeEvents, upcomingEvents, pastEvents, archivedEvents])
+
+  // Real, computed storage usage — not decorative. Reads the actual
+  // serialized size of this app's localStorage key.
+  const storageInfo = useMemo(() => {
+    let bytes = 0
+    try {
+      const raw = window.localStorage.getItem(STORAGE_KEY)
+      bytes = raw ? new Blob([raw]).size : 0
+    } catch {
+      bytes = 0
+    }
+    const quotaBytes = 5 * 1024 * 1024 // typical localStorage quota is ~5MB
+    return {
+      usedKB: (bytes / 1024).toFixed(1),
+      quotaMB: (quotaBytes / (1024 * 1024)).toFixed(0),
+      percentUsed: Math.min(100, (bytes / quotaBytes) * 100)
+    }
+  }, [events])
 
   const value = {
     events,
+    activeEvents,
     upcomingEvents,
     pastEvents,
+    archivedEvents,
+    categoryCounts,
     stats,
+    storageInfo,
     addEvent,
     deleteEvent,
+    archiveEvent,
+    unarchiveEvent,
     getEventById
   }
 

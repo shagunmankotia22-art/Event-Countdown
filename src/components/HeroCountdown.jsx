@@ -18,14 +18,17 @@ export default function HeroCountdown({ event }) {
 
   return (
     <Link to={`/events/${event.id}`}>
-      <section className="relative w-full rounded-[2.5rem] overflow-hidden mb-10 group cursor-pointer aspect-[21/9] bg-gradient-to-br from-primary-container/40 to-surface-container-high">
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent z-10" />
+      <section
+        className="relative w-full rounded-[2.5rem] overflow-hidden mb-10 group cursor-pointer aspect-[21/9] bg-cover bg-center"
+        style={{ backgroundImage: `url(${event.image})` }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/10 z-10" />
         <div className="absolute bottom-0 left-0 p-10 z-20 w-full">
           <div className="flex items-center gap-3 mb-4">
             <span className="bg-primary text-on-primary px-4 py-1 rounded-full text-xs uppercase tracking-widest font-bold">
               Next Up
             </span>
-            <span className="text-on-surface/70 text-sm">{event.category}</span>
+            <span className="text-white/80 text-sm drop-shadow">{event.category}</span>
           </div>
           <h2 className="font-display text-5xl md:text-6xl text-white mb-6 drop-shadow-2xl">
             {event.title}
@@ -50,14 +53,14 @@ export default function HeroCountdown({ event }) {
 function TimeBlock({ value, label }) {
   return (
     <div className="flex flex-col items-center">
-      <span className="monospaced-timer text-5xl font-extrabold text-primary">
+      <span className="monospaced-timer text-5xl font-extrabold text-primary drop-shadow-lg">
         {String(value).padStart(2, '0')}
       </span>
-      <span className="text-xs text-primary/70 uppercase tracking-wide">{label}</span>
+      <span className="text-xs text-primary/80 uppercase tracking-wide">{label}</span>
     </div>
   )
 }
 
 function Divider() {
-  return <div className="text-4xl text-primary/30 py-1">:</div>
+  return <div className="text-4xl text-primary/40 py-1">:</div>
 }
