@@ -20,7 +20,7 @@ export default function Login() {
 
   return (
     <div className="glass-card rounded-[2rem] p-10 max-w-sm mx-auto mt-20">
-      <h1 className="text-xl font-bold mb-4">Sign in to continue</h1>
+      <h1 className="text-xl font-bold mb-4 text-on-surface">Sign in to continue</h1>
       <p className="text-xs text-on-surface-variant mb-6">
         This page is protected. Enter any name to simulate a session.
       </p>

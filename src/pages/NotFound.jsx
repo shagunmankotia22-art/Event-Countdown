@@ -7,7 +7,7 @@ export default function NotFound() {
       <span className="material-symbols-outlined text-6xl text-primary mb-4">
         event_busy
       </span>
-      <h1 className="text-3xl font-display font-bold mb-2">404</h1>
+      <h1 className="text-3xl font-display font-bold mb-2 text-on-surface">404</h1>
       <p className="text-on-surface-variant mb-6">
         This page doesn't exist — maybe the event got cancelled.
       </p>

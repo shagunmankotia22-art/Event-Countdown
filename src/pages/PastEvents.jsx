@@ -6,7 +6,7 @@ export default function PastEvents() {
 
   return (
     <div>
-      <h1 className="text-2xl font-display font-bold mb-6">Past Events</h1>
+      <h1 className="text-2xl font-display font-bold mb-6 text-on-surface">Past Events</h1>
       {pastEvents.length === 0 ? (
         <p className="text-on-surface-variant">Nothing here yet — completed events will show up once their date passes.</p>
       ) : (

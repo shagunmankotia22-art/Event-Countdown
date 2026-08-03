@@ -15,7 +15,7 @@ export default function EventDetail() {
   if (!event) {
     return (
       <div className="glass-card rounded-3xl p-10 text-center">
-        <p className="mb-4">No event found with id "{id}".</p>
+        <p className="mb-4 text-on-surface">No event found with id "{id}".</p>
         <Link to="/" className="text-primary underline">Back to dashboard</Link>
       </div>
     )
@@ -31,7 +31,7 @@ export default function EventDetail() {
       <span className={`inline-block px-3 py-1 rounded-full text-xs uppercase mb-4 bg-${event.color}/20 text-${event.color}`}>
         {event.category}
       </span>
-      <h1 className="text-4xl font-display font-bold mb-2">{event.title}</h1>
+      <h1 className="text-4xl font-display font-bold mb-2 text-on-surface">{event.title}</h1>
       <p className="text-on-surface-variant mb-6">{event.location}</p>
 
       <p className="mb-6 text-sm text-on-surface-variant">{event.notes}</p>
@@ -46,7 +46,7 @@ export default function EventDetail() {
           <p className="text-sm text-secondary">Couldn't load weather: {weatherError}</p>
         )}
         {weather && (
-          <p className="text-sm">
+          <p className="text-sm text-on-surface">
             {weather.place}, {weather.country} — {weather.temperature}°C, wind {weather.windspeed} km/h
           </p>
         )}

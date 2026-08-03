@@ -63,7 +63,7 @@ export default function AddEvent() {
 
   return (
     <div className="glass-card rounded-[2rem] p-10 max-w-xl">
-      <h1 className="text-2xl font-display font-bold mb-6">Add a New Event</h1>
+      <h1 className="text-2xl font-display font-bold mb-6 text-on-surface">Add a New Event</h1>
 
       <form onSubmit={handleSubmit} className="space-y-5" noValidate>
         <Field label="Event Title" error={errors.title}>

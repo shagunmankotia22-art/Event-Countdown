@@ -67,7 +67,7 @@ export default function CalendarWidget() {
   return (
     <div className="glass-card rounded-[2rem] p-6 mb-8">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="text-lg font-bold">
+        <h3 className="text-lg font-bold text-on-surface">
           {MONTH_NAMES[cursor.getMonth()]} {cursor.getFullYear()}
         </h3>
         <div className="flex gap-1">

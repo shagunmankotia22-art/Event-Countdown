@@ -26,7 +26,7 @@ export default function Dashboard() {
       <aside className="h-fit">
         <CalendarWidget />
         <div className="glass-card rounded-[2rem] p-6">
-          <h3 className="text-lg font-bold mb-4">Upcoming Milestones</h3>
+          <h3 className="text-lg font-bold mb-4 text-on-surface">Upcoming Milestones</h3>
           <MilestoneList events={upcomingEvents} />
         </div>
       </aside>

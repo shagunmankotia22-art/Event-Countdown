@@ -20,7 +20,7 @@ export default function MilestoneList({ events }) {
         >
           <div className={`w-2 h-12 bg-${event.color} rounded-full`} />
           <div className="flex-1">
-            <h4 className="text-sm font-bold">{event.title}</h4>
+            <h4 className="text-sm font-bold text-on-surface">{event.title}</h4>
             <p className="text-xs text-on-surface-variant">
               {event.location} · {new Date(event.date).toLocaleDateString()}
             </p>

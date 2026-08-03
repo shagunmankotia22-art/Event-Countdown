@@ -24,7 +24,7 @@ export default function EventCard({ event, onDelete }) {
       </div>
 
       <Link to={`/events/${event.id}`}>
-        <h3 className="text-xl font-bold mb-1 hover:text-primary transition-colors">
+        <h3 className="text-xl font-bold mb-1 text-on-surface hover:text-primary transition-colors">
           {event.title}
         </h3>
       </Link>
